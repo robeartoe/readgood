@@ -1,13 +1,19 @@
 import React from 'react';
+import Header from './Header'
+import Footer from './Footer'
 
+const style={backgroundColor:'whitesmoke'}
 
 
 class Home extends React.Component{
+
   render() {
     return(
-      <div class="container">
-        <h3>Hello</h3>
+      <div style={style}>
+        <Header />
+        <h1>Hello</h1>
         <p>Test Test</p>
+        <Footer />
       </div>
     )
   }
