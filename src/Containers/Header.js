@@ -16,10 +16,10 @@ import {
   DropdownButton} from 'reactstrap';
 
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
-import {faBars,faCog,faUser,faSignout} from '@fortawesome/fontawesome-free-solid'
+import {faBars,faCog,faUser,faSignInAlt} from '@fortawesome/fontawesome-free-solid'
 
 const divStyle = {
-  backgroundColor:"#60be86"
+  backgroundColor:"#60be86",
 }
 
 const navBrandStyle = {
@@ -70,10 +70,10 @@ class Header extends React.Component{
                     </span>
               </DropdownToggle>
               <DropdownMenu right>
-                <DropdownItem eventKey='1'>User Profile</DropdownItem>
-                <DropdownItem eventKey='2'>Settings</DropdownItem>
+                <DropdownItem eventKey='1'><FontAwesomeIcon style={{color:'#60be86'}} icon={faUser} size='sm'/> User Profile</DropdownItem>
+                <DropdownItem eventKey='2'><FontAwesomeIcon style={{color:'#60be86'}} icon={faCog} size='sm'/> Settings</DropdownItem>
                 <DropdownItem divider />
-                <DropdownItem eventKey='3'><NavLink href='https://www.google.com'>Logout</NavLink></DropdownItem>
+                <DropdownItem eventKey='3'><FontAwesomeIcon style={{color:'#60be86'}} icon={faSignInAlt} size='sm'/> Sign in/Logout</DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
           </Nav>
