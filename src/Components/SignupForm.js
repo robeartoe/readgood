@@ -1,6 +1,6 @@
 import React from 'react'
-import { Container ,Col, Form, FormGroup, Label, Input, FormText,Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Button } from 'reactstrap';
+import { Container ,Col, Form, FormGroup, Label, Input, FormText,Card,
+  CardImg, CardText, CardBody,CardTitle, CardSubtitle, Button } from 'reactstrap';
 
 const style={
 
@@ -42,6 +42,10 @@ class SignupForm extends React.Component{
             </CardText>
           </CardBody>
         </Card>
+        <div style={{textAlign:'center',padding:'15px'}}>
+          <p>Have an account?</p>
+          <Button outline color="secondary">Log In</Button>
+        </div>
       </div>
     )
   }

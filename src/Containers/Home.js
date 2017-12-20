@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './Header'
 import Footer from './Footer'
 import Login from './Login'
+import UserPage from './UserPage'
 
 const style={
   backgroundColor:'whitesmoke',
@@ -16,10 +17,11 @@ class Home extends React.Component{
     return(
       <div style={style}>
         <Header />
-        <Login />
+        <UserPage />
         <Footer />
       </div>
     )
   }
 }
+
 export default Home;

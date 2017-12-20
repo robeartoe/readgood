@@ -18,11 +18,6 @@ class Login extends React.Component{
           </Container>
         </Jumbotron>
         <LoginForm />
-        <div style={{textAlign:'center',padding:'15px'}}>
-          TODO: Might need to move this ... somewhere
-          <p>Dont have an account?</p>
-          <Button outline color="secondary">Sign Up</Button>
-        </div>
       </div>
     )
   }
