@@ -1,5 +1,5 @@
 import React from 'react';
-import Home from './Home'
+import Layout from './Layout'
 import LoginForm from '../Components/LoginForm'
 import SignupForm from '../Components/SignupForm'
 import {Jumbotron,Container,Button} from 'reactstrap';
@@ -8,10 +8,10 @@ const style={
   backgroundColor:'whitesmoke',
 }
 
-class Login extends React.Component{
+class MainMenu extends React.Component{
   render(){
     return(
-      <Home>
+      <Layout>
         <div>
           <Jumbotron fluid style={style} >
             <Container fluid>
@@ -19,10 +19,10 @@ class Login extends React.Component{
               <p className="lead">A MERN stack web app designed to help you read ... which is good.</p>
             </Container>
           </Jumbotron>
-          <LoginForm />
+          {this.props.children}
         </div>
-      </Home>
+      </Layout>
     )
   }
 }
-export default Login;
+export default MainMenu;

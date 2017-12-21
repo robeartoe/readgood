@@ -8,7 +8,7 @@ const style={
   // minHeight:'100vh'
 }
 
-class Home extends React.Component{
+class Layout extends React.Component{
 
   render() {
     return(
@@ -21,4 +21,4 @@ class Home extends React.Component{
   }
 }
 
-export default Home;
+export default Layout;

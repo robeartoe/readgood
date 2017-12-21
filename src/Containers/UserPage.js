@@ -1,7 +1,7 @@
 import React from 'react';
 import Stats from '../Components/Stats';
-import BookList from '../Components/BookList'
-import Home from './Home'
+import BookList from '../Components/BookList';
+import Layout from './Layout'
 import {Container,Row,Col,TabContent, TabPane, Nav, NavItem, NavLink,} from 'reactstrap';
 import classnames from 'classnames';
 
@@ -29,7 +29,7 @@ class UserPage extends React.Component{
 
   render(){
     return(
-      <Home>
+      <Layout>
         <div>
           <Container>
             <Row>
@@ -75,7 +75,7 @@ class UserPage extends React.Component{
             </Row>
           </Container>
         </div>
-      </Home>
+      </Layout>
     )
   }
 }

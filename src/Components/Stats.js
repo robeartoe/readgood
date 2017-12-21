@@ -1,6 +1,7 @@
 // This will display info about the user, and their stats about their list, their books, pages read, pages to read, etc.
 import React from 'react'
 import {Row,Col,Container,Button} from 'reactstrap'
+import {Link} from 'react-router-dom';
 
 const UserStats = {}
 const BookStats = {textAlign:'right',float:'right'}
@@ -14,7 +15,7 @@ class Stats extends React.Component{
         <h1 style={{textAlign:'center'}}>
           Robert Ruiz
         </h1>
-        <Button color="secondary" size="lg" style={{backgroundColor:"#60be86"}} block>Add Book</Button>
+        <Link to="/Addbook"><Button color="secondary" size="lg" style={{backgroundColor:"#60be86"}} block>Add Book</Button></Link>
         <hr>
         </hr>
         <h4 style={{textAlign:'center'}}>
