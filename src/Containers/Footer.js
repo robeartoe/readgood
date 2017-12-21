@@ -24,7 +24,7 @@ class Footer extends React.Component{
       <div style={divStyle}>
         <Navbar light expand="md">
           <Nav className="mr-auto" navbar>
-            <NavItem style={navBrandStyle}>Created By: Robert Ruiz; 2018</NavItem>
+            <NavItem style={navBrandStyle}>Created By: Robert Ruiz 2018</NavItem>
           </Nav>
           <Nav className="ml-auto" navbar>
             <NavItem><NavLink href='https://github.com/robeartoe'><FontAwesomeIcon style={navBrandStyle} icon={faGithub} size='lg' /></NavLink>

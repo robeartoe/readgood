@@ -8,3 +8,5 @@
 * [React Projects](http://sean-smith.me/assets/portfolio/25-react-projects/index.html)
 * [Ways to stylize React](https://codeburst.io/4-four-ways-to-style-react-components-ac6f323da822)
 * [Best 5 React Tutorials](https://www.andrewhfarmer.com/getting-started-tutorials/)
+* [React Router Global Header](https://stackoverflow.com/questions/36262360/react-router-global-header)
+   This will definitely help me out implement headers and footers with all my pages. Makes sense too. 

@@ -14,13 +14,17 @@ class BookList extends React.Component{
           <thead>
             <tr>
               <th>#</th>
-              <th size="2">Title:</th>
-              <th size="2">Author:</th>
-              <th size="2">Pages Read:</th>
-              <th size="2">Pages Total:</th>
+              <th>Title:</th>
+              <th>Author:</th>
+              <th>Pages Read:</th>
+              <th>Pages Total:</th>
             </tr>
           </thead>
           <tbody>
+            <BookListing/>
+            <BookListing/>
+            <BookListing/>
+            <BookListing/>
             <BookListing/>
             <BookListing/>
             <BookListing/>

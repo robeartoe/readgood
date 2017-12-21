@@ -1,6 +1,7 @@
 import React from 'react';
 import Stats from '../Components/Stats';
 import BookList from '../Components/BookList'
+import Home from './Home'
 import {Container,Row,Col,TabContent, TabPane, Nav, NavItem, NavLink,} from 'reactstrap';
 import classnames from 'classnames';
 
@@ -28,51 +29,53 @@ class UserPage extends React.Component{
 
   render(){
     return(
-      <div>
-        <Container>
-          <Row>
-            <Col xs="3" style={UserStats}>
-              <Stats/>
-            </Col>
-            <Col style={BookStats}>
-              <Nav tabs>
-                <NavItem>
-                  <NavLink className={classnames({ active: this.state.activeTab === '1' })} onClick={() => { this.toggle('1'); }}>Currently Reading</NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink className={classnames({ active: this.state.activeTab === '2' })} onClick={() => { this.toggle('2'); }}>Plan to read</NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink className={classnames({ active: this.state.activeTab === '3' })} onClick={() => { this.toggle('3'); }}>Have Read</NavLink>
-                </NavItem>
-              </Nav>
-              <TabContent activeTab={this.state.activeTab}>
-                <TabPane tabId="1">
-                    <Row>
-                      <Col sm="12">
-                        <BookList/>
-                      </Col>
-                    </Row>
-                  </TabPane>
-                  <TabPane tabId="2">
+      <Home>
+        <div>
+          <Container>
+            <Row>
+              <Col xs="3" style={UserStats}>
+                <Stats/>
+              </Col>
+              <Col style={BookStats}>
+                <Nav tabs>
+                  <NavItem>
+                    <NavLink className={classnames({ active: this.state.activeTab === '1' })} onClick={() => { this.toggle('1'); }}>Currently Reading</NavLink>
+                  </NavItem>
+                  <NavItem>
+                    <NavLink className={classnames({ active: this.state.activeTab === '2' })} onClick={() => { this.toggle('2'); }}>Plan to read</NavLink>
+                  </NavItem>
+                  <NavItem>
+                    <NavLink className={classnames({ active: this.state.activeTab === '3' })} onClick={() => { this.toggle('3'); }}>Have Read</NavLink>
+                  </NavItem>
+                </Nav>
+                <TabContent activeTab={this.state.activeTab}>
+                  <TabPane tabId="1">
                       <Row>
                         <Col sm="12">
                           <BookList/>
                         </Col>
                       </Row>
                     </TabPane>
-                    <TabPane tabId="3">
+                    <TabPane tabId="2">
                         <Row>
                           <Col sm="12">
                             <BookList/>
                           </Col>
                         </Row>
                       </TabPane>
-              </TabContent>
-            </Col>
-          </Row>
-        </Container>
-      </div>
+                      <TabPane tabId="3">
+                          <Row>
+                            <Col sm="12">
+                              <BookList/>
+                            </Col>
+                          </Row>
+                        </TabPane>
+                </TabContent>
+              </Col>
+            </Row>
+          </Container>
+        </div>
+      </Home>
     )
   }
 }
