@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+
 import MainMenu from './Containers/MainMenu';
-import LoginForm from './Components/LoginForm';
-import SignupForm from './Components/SignupForm';
+import LoginForm from './Containers/LoginForm';
+import SignupForm from './Containers/SignupForm';
 import UserPage from './Containers/UserPage';
 import AddBook from './Containers/AddBook';
+
 import registerServiceWorker from './registerServiceWorker';
 
 // Bootstrap:
@@ -20,7 +22,6 @@ ReactDOM.render(
         <Route path='/userpage' component={UserPage} />
         <Route path='/Signup' component={SignupForm} />
         <Route path='/AddBook' component={AddBook} />
-
       </div>
 </Router>
   ,document.getElementById('root'));

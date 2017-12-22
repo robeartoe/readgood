@@ -2,7 +2,7 @@ import React from 'react'
 import { Container ,Col, Form, FormGroup, Label, Input, FormText,Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle, Button } from 'reactstrap';
 import {Link} from 'react-router-dom';
-import MainMenu from '../Containers/MainMenu';
+import MainMenu from './MainMenu';
 
 const Buttonstyle={
   backgroundColor:"#60be86",

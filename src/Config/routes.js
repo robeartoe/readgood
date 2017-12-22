@@ -1,3 +1,4 @@
+// This Routes file will be for node and express.
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';

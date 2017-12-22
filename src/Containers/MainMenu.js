@@ -1,7 +1,8 @@
 import React from 'react';
 import Layout from './Layout'
-import LoginForm from '../Components/LoginForm'
-import SignupForm from '../Components/SignupForm'
+import LoginForm from './LoginForm'
+import SignupForm from './SignupForm'
+
 import {Jumbotron,Container,Button} from 'reactstrap';
 
 const style={
