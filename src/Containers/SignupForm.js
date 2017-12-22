@@ -2,8 +2,10 @@ import React from 'react'
 import { Container ,Col, Form, FormGroup, Label, Input, FormText,Card,
   CardImg, CardText, CardBody,CardTitle, CardSubtitle, Button } from 'reactstrap';
 import MainMenu from './MainMenu';
-import signUpService from '../api'
+// import signUpService from '../api'
 import {Link} from 'react-router-dom';
+import {signUpService} from '../api'
+
 const style={
 }
 
@@ -32,6 +34,7 @@ class SignupForm extends React.Component{
        password: this.state.password,
        confirmPassword: this.state.password
      }
+     // TODO: Determine if two password fields are exact: Else throw error.
      // TODO: Post Request to API: Add User onto DB.
 
      event.preventDefault();
@@ -87,7 +90,7 @@ class SignupForm extends React.Component{
         </Card>
         <div style={{textAlign:'center',padding:'15px'}}>
           <p>Have an account?</p>
-          <Link to="/"><Button style={{backgroundColor:"#60be86"}}>Log In</Button></Link>
+          <Link to="/Login"><Button style={{backgroundColor:"#60be86"}}>Log In</Button></Link>
         </div>
       </div>
       </MainMenu>

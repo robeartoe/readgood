@@ -22,7 +22,7 @@ class AddBook extends React.Component{
           </Row>
           <Row>
             <Col xs="1">
-              <span><Link to="/userpage"><FontAwesomeIcon style={{color:"#60be86"}} icon={faArrowLeft} size="2x"/></Link></span>
+              <span><Link to="/"><FontAwesomeIcon style={{color:"#60be86"}} icon={faArrowLeft} size="2x"/></Link></span>
             </Col>
             <Col>
               <Form>

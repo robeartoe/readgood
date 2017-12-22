@@ -11,3 +11,7 @@
 * [React Router Global Header](https://stackoverflow.com/questions/36262360/react-router-global-header)
    This will definitely help me out implement headers and footers with all my pages. Makes sense too.
 * [Export multiple classes](https://stackoverflow.com/questions/30762734/multiple-react-components-in-a-single-module)
+* [Nested Objects in mongoose REALLY NEAT](https://stackoverflow.com/questions/39596625/nested-objects-in-mongoose-schemas)
+* [Schema Types : Mongoose](http://mongoosejs.com/docs/schematypes.html)
+* [Can't mix import and exports](https://github.com/webpack/webpack/issues/4039)
+   This one is a bit confusing. You can export objects ... but you can't import them, you have to make them a var by requiring.
