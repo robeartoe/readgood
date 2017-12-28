@@ -6,7 +6,7 @@ var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var cors = require('cors');
-
+var jwt = require('jwt-simple');
 //and create our instances
 var app = express();
 var router = express.Router();
@@ -30,7 +30,10 @@ app.use(cors());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-app.use('/api', router);
+// Set JWT TOKEN SECRET:
+app.set('jwtTokenSecret','apple4560narjwbrn');
+
+app.use('/api',routes);
 
 // Start the server
 app.listen(port, function(){

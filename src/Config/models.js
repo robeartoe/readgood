@@ -9,31 +9,31 @@ var UserSchema = new Schema({
   email: {type: String, required: true, unique: true},
   password: String,
   bookList:{
-    toRead:{
-      book:{
+    toRead:[
+      {
         bookTitle: String,
         bookAuthor: String,
         pagesRead: Number,
         pagesTotal: Number
       }
-    },
-    reading:{
-      book:{
+    ],
+    reading:[
+      {
         bookTitle: String,
         bookAuthor: String,
         pagesRead: Number,
         pagesTotal: Number
       }
-    },
-    haveRead:{
-      book:{
+    ],
+    haveRead:[
+      {
         bookTitle: String,
         bookAuthor: String,
         pagesRead: Number,
         pagesTotal: Number
       }
-    }
+    ]
   }
 });
 
-module.export = mongoose.model('User',UserSchema);
+module.exports = mongoose.model('User',UserSchema);

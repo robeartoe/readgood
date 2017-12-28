@@ -15,3 +15,4 @@
 * [Schema Types : Mongoose](http://mongoosejs.com/docs/schematypes.html)
 * [Can't mix import and exports](https://github.com/webpack/webpack/issues/4039)
    This one is a bit confusing. You can export objects ... but you can't import them, you have to make them a var by requiring.
+* [Module Exports](http://www.tutorialsteacher.com/nodejs/nodejs-module-exports)
