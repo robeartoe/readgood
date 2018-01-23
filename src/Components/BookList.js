@@ -22,12 +22,8 @@ class BookList extends React.Component{
             </tr>
           </thead>
           <tbody>
-            <BookListing/>
-            <BookListing/>
-            <BookListing/>
-            <BookListing/>
-            <BookListing/>
-            <BookListing/>
+            // TODO: Create for-loop for book(s).
+
             <BookListing/>
           </tbody>
         </Table>

@@ -1,11 +1,15 @@
 import React from 'react';
+import Layout from './Layout';
+import {Container} from 'reactstrap';
 const style={}
 class Settings extends React.Component{
   render(){
     return(
-      <div>
-        <h1>To be Implemented ... Someday.</h1>
-      </div>
+      <Layout>
+        <Container>
+          <h1>Test</h1>
+        </Container>
+      </Layout>
     )
   }
 }

@@ -53,8 +53,18 @@ class Header extends React.Component{
     this.setState({isHover:false})
   }
   handleOnClick(){
-
   }
+  isLoggedIn(){
+    return (
+      <DropdownMenu right>
+        <DropdownItem eventKey='1'><FontAwesomeIcon style={{color:'#60be86'}} icon={faUser} size='sm'/> User Profile</DropdownItem>
+        <DropdownItem eventKey='2'><FontAwesomeIcon style={{color:'#60be86'}} icon={faCog} size='sm'/> Settings</DropdownItem>
+        <DropdownItem divider />
+        <DropdownItem eventKey='3'><FontAwesomeIcon style={{color:'#60be86'}} icon={faSignInAlt} size='sm'/> Logout</DropdownItem>
+      </DropdownMenu>
+    )
+  }
+
 
   // {{!this.state.isHover && <FontAwesomeIcon onMouseOver={this.handleMouseOver} onMouseOut={this.onMouseOut} style={{color:'whitesmoke'}} icon={faCog} size='lg'/>}
   // { this.state.isHover && <FontAwesomeIcon onMouseOver={this.handleMouseOver}
@@ -71,13 +81,14 @@ class Header extends React.Component{
                       <FontAwesomeIcon onMouseOver={this.handleMouseOver} onMouseOut={this.onMouseOut} style={{color:'whitesmoke'}} icon={faCog} size='lg'/>
                     </span>
               </DropdownToggle>
-
+              // TODO: Insert isLoggedIn():
               <DropdownMenu right>
                 <DropdownItem eventKey='1'><FontAwesomeIcon style={{color:'#60be86'}} icon={faUser} size='sm'/> User Profile</DropdownItem>
                 <DropdownItem eventKey='2'><FontAwesomeIcon style={{color:'#60be86'}} icon={faCog} size='sm'/> Settings</DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem eventKey='3'><FontAwesomeIcon style={{color:'#60be86'}} icon={faSignInAlt} size='sm'/> Logout</DropdownItem>
               </DropdownMenu>
+              
             </UncontrolledDropdown>
           </Nav>
         </Navbar>

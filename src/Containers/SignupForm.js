@@ -25,6 +25,22 @@ class SignupForm extends React.Component{
      this.setState({[name]: value});
    }
 
+   checkPasswords(){
+     if(this.state.password != this.state.confirmPassword){
+      return(
+        <div>
+
+        </div>
+      )
+     }
+     else{
+       return(
+         <div>
+         </div>
+       )
+     }
+   }
+
    handleSubmit(event) {
      alert(this.state.firstName + this.state.lastName + this.state.email);
      var data = {
@@ -34,9 +50,11 @@ class SignupForm extends React.Component{
        password: this.state.password,
        confirmPassword: this.state.password
      }
-     // TODO: Determine if two password fields are exact: Else throw error.
-     // TODO: Post Request to API: Add User onto DB.
+     api = signUpService(data);
+     // If API code is 200: Good, it worked.
+     // Push user to UserPage?
 
+     // Else: Something went wrong.
      event.preventDefault();
    }
 
@@ -86,6 +104,8 @@ class SignupForm extends React.Component{
                 </FormGroup>
               </Form>
             </CardText>
+            // TODO: Implement adding an error bar if the passwords are not the same.
+            // Pretty sure reactstrap has an error bar implementation.
           </CardBody>
         </Card>
         <div style={{textAlign:'center',padding:'15px'}}>

@@ -31,7 +31,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 // Set JWT TOKEN SECRET:
-app.set('jwtTokenSecret','apple4560narjwbrn');
+app.set('jwtTokenSecret','apple4560narjwbrn'); //TODO: Figure out why this isn't working.
 
 app.use('/api',routes);
 
