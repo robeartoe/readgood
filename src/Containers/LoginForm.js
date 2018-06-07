@@ -37,18 +37,16 @@ class LoginForm extends React.Component{
 
     // TODO: Implement call to API.
     // Perform API Request:
-    login = loginService(data); //NOTE: This may not work. Not sure how JS initializes classes.
+    // login = loginService(data); //NOTE: This may not work. Not sure how JS initializes classes.
 
-    // If Password is incorrect OR User is not in the DB. Let them know:
-    if (){
-    }
-    else if (){
-    }
-    // Else Log the user in:
-    else{
-    }
-
-
+    // // If Password is incorrect OR User is not in the DB. Let them know:
+    // if (){
+    // }
+    // else if (){
+    // }
+    // // Else Log the user in:
+    // else{
+    // }
 
   }
 

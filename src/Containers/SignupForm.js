@@ -50,7 +50,7 @@ class SignupForm extends React.Component{
        password: this.state.password,
        confirmPassword: this.state.password
      }
-     api = signUpService(data);
+     // api = signUpService(data);
      // If API code is 200: Good, it worked.
      // Push user to UserPage?
 

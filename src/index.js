@@ -17,6 +17,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 // TODO: Add more routes.
 // TODO: Clean up unused vars.
 // TODO: The default should be the userpage. EXCEPT when the user is not logged in, then they should be directed to the Login Page.
+
 ReactDOM.render(
   <Router>
       <div>

@@ -12,6 +12,9 @@ import {faGithub,faLinkedin} from '@fortawesome/fontawesome-free-brands'
 
 const divStyle = {
   backgroundColor:"#60be86",
+  position: 'absolute',
+ bottom: 0,
+ width: '100%'
 }
 
 const navBrandStyle = {

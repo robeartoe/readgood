@@ -88,7 +88,6 @@ class Header extends React.Component{
                 <DropdownItem divider />
                 <DropdownItem eventKey='3'><FontAwesomeIcon style={{color:'#60be86'}} icon={faSignInAlt} size='sm'/> Logout</DropdownItem>
               </DropdownMenu>
-              
             </UncontrolledDropdown>
           </Nav>
         </Navbar>
