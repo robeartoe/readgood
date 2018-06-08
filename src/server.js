@@ -10,15 +10,17 @@ var jwt = require('jwt-simple');
 //and create our instances
 var app = express();
 var router = express.Router();
+// app.use(Express.static(path.join(__dirname, 'static')));
 
 // Required application specific custom router module
-var routes = require("./src/Config/routes");
+var routes = require("./routes/routes");
 
 //set our port to either a predetermined port number if you have set it up, or 4200
 var port = process.env.API_PORT || 4200;
 
 mongoose.Promise = require('bluebird');
-mongoose.connect('mongodb://rob:apple@ds157653.mlab.com:57653/readgood')
+// mongoose.connect('mongodb://rob:apple@ds157653.mlab.com:57653/readgood')
+mongoose.connect('mongodb://localhost/user')
   .then(() => {console.log("MongoDB Start")})
   .catch((err) => {
     console.log("App Starting Error: " + err.stack);
@@ -33,7 +35,7 @@ app.use(bodyParser.json());
 // Set JWT TOKEN SECRET:
 app.set('jwtTokenSecret','apple4560narjwbrn'); //TODO: Figure out why this isn't working.
 
-app.use('/api',routes);
+app.use('/',routes);
 
 // Start the server
 app.listen(port, function(){

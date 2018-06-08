@@ -16,7 +16,7 @@ class MainMenu extends React.Component{
         <div>
           <Jumbotron fluid style={style} >
             <Container fluid>
-              <h1 className="display-3">ReadGood</h1>
+              <h1 className="display-4">ReadGood</h1>
               <p className="lead">A MERN stack web app designed to help you read ... which is good.</p>
             </Container>
           </Jumbotron>

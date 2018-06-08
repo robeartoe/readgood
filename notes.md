@@ -1,6 +1,20 @@
 # Notes:
+nodemon .src/server.js
+This will run Node.js
+npm start
+This will run react.
+
+Postman
+This is GREAT for API calls.
+robo3t
+This is useful to lookup the DB.
+mongod
+This will start the mongoDB.
+mongo
+This will connect to mongo.
 
 ## Links:
+* [Create React/Node Project](https://medium.freecodecamp.org/how-to-make-create-react-app-work-with-a-node-backend-api-7c5c48acb1b0)
 * [React Project Structure](https://daveceddia.com/react-project-structure/)
    This article describes the current react project structure used here.
 * [States](http://brewhouse.io/blog/2015/03/24/best-practices-for-component-state-in-reactjs.html)
@@ -16,3 +30,5 @@
 * [Can't mix import and exports](https://github.com/webpack/webpack/issues/4039)
    This one is a bit confusing. You can export objects ... but you can't import them, you have to make them a var by requiring.
 * [Module Exports](http://www.tutorialsteacher.com/nodejs/nodejs-module-exports)
+* [Intro to MongoDB](https://scotch.io/tutorials/an-introduction-to-mongodb)
+* [Install MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)

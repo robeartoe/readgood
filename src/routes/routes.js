@@ -1,23 +1,22 @@
 // This Routes file will be for node and express.
 var express = require('express');
-// var app = express(); //Perhaps I don't need this? 
+// var app = express(); //Perhaps I don't need this?
 var router = express.Router();
 
-var user = require('./models');
+var User = require('../models');
 var Bcrypt = require('bcrypt');
 var moment = require('moment');
 var jwt = require('jwt-simple');
 
 router.route('/').get(function(req,res){
-  res.json({test:"TEST"})
+  res.json({test:"HI I see you're trying to get into the API. Can I help you? Email: robert@robertjruiz.com"})
 });
 
 // Will be called upon SignUp.
 router.route('/register').post(function(req,res){
-  var item = new user(req.body);
-  bcrypt.hash(req.body.password,10,function(err,hash){
+  var item = new User(req.query);
+  Bcrypt.hash(req.query.password,10,function(err,hash){
     item.password = hash;
-    console.log(item.password)
     item.save()
     .then(item => {
       res.json("User Added Sucessfully");
@@ -30,14 +29,15 @@ router.route('/register').post(function(req,res){
 
 // TODO: Implement Login with bCrypt.
 router.route('/login').post(function(req,res){
-  user.findOne({email:req.body.email},function (err,User){
-    // console.log(User)
+  console.log(req.query);
+  User.findOne({email:req.query.email},function (err,User){
+    console.log(User);
     if(err){
       console.log(err);
       return res.status(500).send("Error on our end. We're sorry!");
     }
     if (!User) { return res.status(401).send("No User Found.")}
-    Bcrypt.compare(req.body.password,User.password,function(err,valid){
+    Bcrypt.compare(req.query.password,User.password,function(err,valid){
       if(err){return console.log(err)}
       if(!valid){return res.status(401).send("Password is Incorrect.")}
       else {
@@ -80,7 +80,7 @@ router.route('/login').post(function(req,res){
 
 // This route will get the user AND their books and their list.
 router.route('/:email').get(function(req,res){
-  user.findOne({email:req.params.email},function (err,user){
+  User.findOne({email:req.params.email},function (err,user){
     if(err){
       console.log(err);
     }
@@ -133,7 +133,7 @@ router.route('/:email/delete/user').post(function(req,res){
 // This will help with nested links for DELETE books.
 router.route('/:email/delete/book').post(function(req,res){
   // TODO: Implement deleting book based on list.
-  userModel.findOneAndRemove({bookList[req.params.bookList][ /*In Here should be the index of the book, that's supposed to get deleted.*/  ]})
+  // userModel.findOneAndRemove({bookList[req.params.bookList][ /*In Here should be the index of the book, that's supposed to get deleted.*/  ]})
 });
 
 module.exports = router;

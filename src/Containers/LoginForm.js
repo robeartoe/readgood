@@ -81,7 +81,6 @@ class LoginForm extends React.Component{
             </CardBody>
           </Card>
           <div style={{textAlign:'center',padding:'15px'}}>
-            TODO: Might need to move this ... somewhere
             <p>Dont have an account?</p>
             <Link to="/Signup"><Button style={Buttonstyle}>Sign Up</Button></Link>
           </div>

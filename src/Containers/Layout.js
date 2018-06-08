@@ -1,25 +1,25 @@
 import React from 'react';
 import Header from './Header'
-import Footer from '../Components/Footer'
+import Footer from './Footer'
 
 const style={
-  backgroundColor:'whitesmoke'
-  // height:'100vh',
-  // minHeight:'100vh'
-  // minHeight: '100vh', /* will cover the 100% of viewport */
+  backgroundColor:'whitesmoke',
+  height:'100vh',
+  minHeight:'100vh',
   // overflow: 'hidden',
   // display: 'block',
-  // position: 'relative',
-  // paddingBottom: '100px' /* height of your footer */
+  position: 'relative'
 }
 
 class Layout extends React.Component{
 
   render() {
     return(
-      <div style={style}>
+      <div>
         <Header />
-        {this.props.children}
+          <div style={style}>
+            {this.props.children}
+          </div>
         <Footer />
       </div>
     )

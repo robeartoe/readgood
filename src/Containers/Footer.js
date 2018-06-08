@@ -13,12 +13,15 @@ import {faGithub,faLinkedin} from '@fortawesome/fontawesome-free-brands'
 const divStyle = {
   backgroundColor:"#60be86",
   position: 'absolute',
- bottom: 0,
- width: '100%'
+  width: '100%'
 }
 
 const navBrandStyle = {
   color:'whitesmoke',
+}
+const iconStyle={
+  height:'25px',
+  width:'25px'
 }
 
 class Footer extends React.Component{
@@ -30,10 +33,13 @@ class Footer extends React.Component{
             <NavItem style={navBrandStyle}>Created By: Robert Ruiz 2018</NavItem>
           </Nav>
           <Nav className="ml-auto" navbar>
+            <NavItem><NavLink href='https://www.robertjruiz.com/'> <img className="logo" style={iconStyle} src="/favicon.ico"/>  </NavLink>
+            </NavItem>
             <NavItem><NavLink href='https://github.com/robeartoe'><FontAwesomeIcon style={navBrandStyle} icon={faGithub} size='lg' /></NavLink>
             </NavItem>
             <NavItem><NavLink href='https://www.linkedin.com/in/robert-ruiz-993153a1/'><FontAwesomeIcon style={navBrandStyle} icon={faLinkedin} size='lg' /></NavLink>
             </NavItem>
+
           </Nav>
         </Navbar>
       </div>
