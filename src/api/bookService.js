@@ -1,4 +1,3 @@
-// This api file will be for REACT, to interact with the backend API.
 import axios from 'axios';
 
 class bookService {
@@ -31,50 +30,4 @@ class bookService {
   }
 }
 
-class signUpService{
-  sendData(data){
-    // The Link here should be: "/addUser". Something like that.
-    console.log(data)
-    axios.post('https://localhost:4200/signup',{firstName: data["firstName"],lastName:data["lastName"],email:data["email"],password:data["password"]})
-  .then(function (response) {
-    console.log(response);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-  }
-}
-
-class loginService{
-  sendData(data){
-    console.log(data)
-    axios.post('https://localhost:4200/login',{email:data['email'],password:data['password']})
-  .then(function(response){
-    console.log(response);
-    // TODO: Find a way to save token.
-    // Perhaps I can send the token back, from the API to the front end. Make the front end hold onto it? ... That doesn't sound safe though.
-
-  })
-  .catch(function(error){
-    console.log(error);
-  })
-  }
-}
-
-class authService{
-  sendData(data){
-    console.log(data)
-  .then(function(response){
-    console.log(response);
-  }).catch(function(error){
-    console.log(error);
-  })
-  }
-}
-
-export {
-  bookService,
-  signUpService,
-  loginService,
-  authService
-}
+export default bookService;

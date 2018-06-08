@@ -2,12 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-import MainMenu from './Containers/MainMenu';
-import LoginForm from './Containers/LoginForm';
-import SignupForm from './Containers/SignupForm';
-import UserPage from './Containers/UserPage';
-import AddBook from './Containers/AddBook';
-import Settings from './Containers/Settings'
+import MainMenu from './containers/MainMenu';
+import LoginForm from './containers/LoginForm';
+import SignupForm from './containers/SignupForm';
+import UserPage from './containers/UserPage';
+import AddBook from './containers/AddBook';
+import Settings from './containers/Settings'
 
 import registerServiceWorker from './registerServiceWorker';
 

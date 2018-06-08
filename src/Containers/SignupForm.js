@@ -4,7 +4,7 @@ import { Container ,Col, Form, FormGroup, Label, Input, FormText,Card,
 import MainMenu from './MainMenu';
 // import signUpService from '../api'
 import {Link} from 'react-router-dom';
-import {signUpService} from '../api'
+import signupService from '../api/signupService'
 
 const style={
 }

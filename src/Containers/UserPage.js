@@ -1,10 +1,10 @@
 import React from 'react';
-import Stats from '../Components/Stats';
-import BookList from '../Components/BookList';
+import Stats from '../components/Stats';
+import BookList from '../components/BookList';
 import Layout from './Layout'
 import {Container,Row,Col,TabContent, TabPane, Nav, NavItem, NavLink,} from 'reactstrap';
 import classnames from 'classnames';
-import {bookService} from '../api'
+import bookService from '../api/bookService'
 const UserStats = {}
 const BookStats = {}
 const style={}

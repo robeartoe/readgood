@@ -3,7 +3,7 @@ var express = require('express');
 // var app = express(); //Perhaps I don't need this?
 var router = express.Router();
 
-var User = require('../models');
+var User = require('../models/user');
 var Bcrypt = require('bcrypt');
 var moment = require('moment');
 var jwt = require('jwt-simple');

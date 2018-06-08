@@ -1,6 +1,7 @@
 // This file will create the User Schema with MongoDB.
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var bookSchema = require('./book')
 
 // Define Collection and Schema for User:
 var UserSchema = new Schema({
@@ -10,28 +11,13 @@ var UserSchema = new Schema({
   password: String,
   bookList:{
     toRead:[
-      {
-        bookTitle: String,
-        bookAuthor: String,
-        pagesRead: Number,
-        pagesTotal: Number
-      }
+      { type: Schema.Types.ObjectId, ref: 'bookSchema' }
     ],
     reading:[
-      {
-        bookTitle: String,
-        bookAuthor: String,
-        pagesRead: Number,
-        pagesTotal: Number
-      }
+      { type: Schema.Types.ObjectId, ref: 'bookSchema' }
     ],
     haveRead:[
-      {
-        bookTitle: String,
-        bookAuthor: String,
-        pagesRead: Number,
-        pagesTotal: Number
-      }
+      { type: Schema.Types.ObjectId, ref: 'bookSchema' }
     ]
   }
 });

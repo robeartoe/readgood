@@ -1,6 +1,9 @@
 # Notes:
-nodemon .src/server.js
+nodemon src/server.js
+OR
+npm run api
 This will run Node.js
+
 npm start
 This will run react.
 
@@ -8,6 +11,7 @@ Postman
 This is GREAT for API calls.
 robo3t
 This is useful to lookup the DB.
+
 mongod
 This will start the mongoDB.
 mongo

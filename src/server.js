@@ -1,6 +1,10 @@
 //server.js: This is for Express and Node to deliever data to React with an API.
 'use strict'
 
+// if (process.env.NODE_ENV !== 'production') {
+//   require('dotenv').load();
+// }
+
 //first we import our dependencies...
 var express = require('express');
 var mongoose = require('mongoose');
@@ -33,9 +37,9 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 // Set JWT TOKEN SECRET:
-app.set('jwtTokenSecret','apple4560narjwbrn'); //TODO: Figure out why this isn't working.
+app.set('jwtTokenSecret',process.env.jwtTokenSecret); //TODO: Figure out why this isn't working.
 
-app.use('/',routes);
+app.use('/api',routes);
 
 // Start the server
 app.listen(port, function(){
