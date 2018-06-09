@@ -17,6 +17,7 @@ router.route('/register').post(function(req,res){
   var item = new User(req.body);
   Bcrypt.hash(req.body.password,10,function(err,hash){
     item.password = hash;
+    console.log(hash)
     item.save()
     .then(item => {
       return res.send("User Added Sucessfully");
@@ -29,25 +30,26 @@ router.route('/register').post(function(req,res){
 
 // TODO: Implement Login with bCrypt.
 router.route('/login').post(function(req,res){
-  // console.log(req.body);
   User.findOne({email:req.body.email},function (err,User){
-    // console.log(User);
     if(err){
       console.log(err);
       return res.status(500).send("Error on our end. We're sorry!");
     }
     if (!User) { return res.status(401).send("No User Found.")}
+    // console.log(req.body.password);
+    // console.log(User.password);
     Bcrypt.compare(req.body.password,User.password,function(err,valid){
       if(err){return console.log(err)}
+      // console.log(valid)
       if(!valid){return res.status(401).send("Password is Incorrect.")}
       else {
         // TODO: Implement JWT Here:
+        // TODO: Change "TestSecretKEY"
         var expires = moment().add(7,'hours').valueOf();
         var token = jwt.encode({
           iss: User.email,
           exp: expires
         },"TestSecretKEY")
-        console.log(token)
 
         // res.json({ //Do I need this?
         //   token:token,

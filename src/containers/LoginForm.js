@@ -14,7 +14,7 @@ const style={
 class LoginForm extends React.Component{
   constructor(props){
     super(props);
-    this.state = {email:'',password:'',errorState:false,error:''};
+    this.state = {email:'',password:'',errorState:false,errors:[],successState:false};
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -23,52 +23,62 @@ class LoginForm extends React.Component{
     const target = event.target;
     const value = target.value;
     const name = target.name;
+    console.log(value);
+    console.log(name);
+
     this.setState({[name]: value});
   }
 
   handleFormValidation(){
-    var errorList = '';
-
+    var errorList = [];
+    var state = true;
+    if (this.state.password == '') {
+      errorList.push("Empty password!");
+      state = false;
+    }
+    if (this.state.email == '') {
+      errorList.push("Empty Email!")
+      state = false;
+    }
     this.setState({errors:errorList})
-    // return errorList;
+    return state;
   }
 
   handleSubmit(event){
+    event.preventDefault();
     var data = {
       email:this.state.email,
       password:this.state.password
     }
-    var self = this;
-    axios.post('http://localhost:4200/api/register',data)
-    .then(function(result){
-      // If API code is 200: Good, it worked.
-      console.log(result.data);
-      console.log(result.status);
-      // self.setState({successState:true});
-    })
-   .catch(function(error){
-     // Else: Something went wrong.
-     console.log(error)
-     var errorList = [error];
-     self.setState({errorState:true});
-     self.setState({errors:errorList});
-    });
+    if (this.handleFormValidation()) {
+      var self = this;
+      self.setState({errorState:false});
+      axios.post('http://localhost:4200/api/login',data)
+      .then(function(result){
+        // If API code is 200: Good, it worked.
+        self.setState({successState:true});
+      })
+     .catch(function(error){
+       // Else: Something went wrong.
+       console.log(error)
+       if (error.response) {
+         console.log(error.response)
+         var errorList = [error.response.data];
+         self.setState({errorState:true});
+         self.setState({errors:errorList});
+       }
+       else if (error.request) {
+         console.log(error.request)
+         var errorList = [error.request.data];
+         self.setState({errorState:true});
+         self.setState({errors:errorList});
+       }
+     });
 
-    event.preventDefault();
-
-    // TODO: Implement call to API.
-    // Perform API Request:
-    // login = loginService(data); //NOTE: This may not work. Not sure how JS initializes classes.
-
-    // // If Password is incorrect OR User is not in the DB. Let them know:
-    // if (){
-    // }
-    // else if (){
-    // }
-    // // Else Log the user in:
-    // else{
-    // }
-
+    }
+    else{
+      this.setState({errorState:true});
+    }
   }
 
   render(){
@@ -83,18 +93,26 @@ class LoginForm extends React.Component{
           :
           null
         }
+        {
+          this.state.successState ?
+          <Alert color="success">
+            Sign in Successful!
+          </Alert>
+          :
+          null
+        }
         <Container style={style}>
-            <Form>
+            <Form onSubmit={this.handleSubmit}>
               <FormGroup row>
                 <Label for="Email" sm={2}>Email</Label>
                <Col sm={10}>
-                 <Input type="email" name="email" id="exampleEmail" placeholder="JohnDoe@AOL.com" />
+                 <Input type="email" name="email" id="exampleEmail" placeholder="JohnDoe@AOL.com" onChange={this.handleChange} value={this.state.email} />
                </Col>
               </FormGroup>
               <FormGroup row>
                 <Label for="Password" sm={2}>Password</Label>
                 <Col sm={10}>
-                  <Input type="password" suggested="current-password" placeholder="Doe1234"/>
+                  <Input type="password" name="password" suggested="current-password" placeholder="Doe1234" onChange={this.handleChange} value={this.state.password}/>
                 </Col>
               </FormGroup>
               <FormGroup check row>
