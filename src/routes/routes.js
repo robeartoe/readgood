@@ -14,30 +14,30 @@ router.route('/').get(function(req,res){
 
 // Will be called upon SignUp.
 router.route('/register').post(function(req,res){
-  var item = new User(req.query);
-  Bcrypt.hash(req.query.password,10,function(err,hash){
+  var item = new User(req.body);
+  Bcrypt.hash(req.body.password,10,function(err,hash){
     item.password = hash;
     item.save()
     .then(item => {
-      res.json("User Added Sucessfully");
+      return res.send("User Added Sucessfully");
     })
     .catch(err => {
-      res.status(400).send(err);
+      return res.status(400).send(err);
     })
   })
 });
 
 // TODO: Implement Login with bCrypt.
 router.route('/login').post(function(req,res){
-  console.log(req.query);
-  User.findOne({email:req.query.email},function (err,User){
-    console.log(User);
+  // console.log(req.body);
+  User.findOne({email:req.body.email},function (err,User){
+    // console.log(User);
     if(err){
       console.log(err);
       return res.status(500).send("Error on our end. We're sorry!");
     }
     if (!User) { return res.status(401).send("No User Found.")}
-    Bcrypt.compare(req.query.password,User.password,function(err,valid){
+    Bcrypt.compare(req.body.password,User.password,function(err,valid){
       if(err){return console.log(err)}
       if(!valid){return res.status(401).send("Password is Incorrect.")}
       else {
@@ -47,6 +47,7 @@ router.route('/login').post(function(req,res){
           iss: User.email,
           exp: expires
         },"TestSecretKEY")
+        console.log(token)
 
         // res.json({ //Do I need this?
         //   token:token,

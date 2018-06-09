@@ -57,10 +57,10 @@ class Header extends React.Component{
   isLoggedIn(){
     return (
       <DropdownMenu right>
-        <DropdownItem eventKey='1'><FontAwesomeIcon style={{color:'#60be86'}} icon={faUser} size='sm'/> User Profile</DropdownItem>
-        <DropdownItem eventKey='2'><FontAwesomeIcon style={{color:'#60be86'}} icon={faCog} size='sm'/> Settings</DropdownItem>
+        <DropdownItem eventkey='1'><FontAwesomeIcon style={{color:'#60be86'}} icon={faUser} size='sm'/> User Profile</DropdownItem>
+        <DropdownItem eventkey='2'><FontAwesomeIcon style={{color:'#60be86'}} icon={faCog} size='sm'/> Settings</DropdownItem>
         <DropdownItem divider />
-        <DropdownItem eventKey='3'><FontAwesomeIcon style={{color:'#60be86'}} icon={faSignInAlt} size='sm'/> Logout</DropdownItem>
+        <DropdownItem eventkey='3'><FontAwesomeIcon style={{color:'#60be86'}} icon={faSignInAlt} size='sm'/> Logout</DropdownItem>
       </DropdownMenu>
     )
   }
@@ -75,7 +75,7 @@ class Header extends React.Component{
         <Navbar light expand="sm">
           <NavbarBrand href="/" style={navBrandStyle}>ReadGood</NavbarBrand>
           <Nav className="ml-auto" navbar >
-            <UncontrolledDropdown nav inNavbar>
+            <UncontrolledDropdown nav innavbar>
               <DropdownToggle nav caret>
                     <span>
                       <FontAwesomeIcon onMouseOver={this.handleMouseOver} onMouseOut={this.onMouseOut} style={{color:'whitesmoke'}} icon={faCog} size='lg'/>
@@ -83,10 +83,10 @@ class Header extends React.Component{
               </DropdownToggle>
               // TODO: Insert isLoggedIn():
               <DropdownMenu right>
-                <DropdownItem eventKey='1'><FontAwesomeIcon style={{color:'#60be86'}} icon={faUser} size='sm'/> User Profile</DropdownItem>
-                <DropdownItem eventKey='2'><FontAwesomeIcon style={{color:'#60be86'}} icon={faCog} size='sm'/> Settings</DropdownItem>
+                <DropdownItem eventkey='1'><FontAwesomeIcon style={{color:'#60be86'}} icon={faUser} size='sm'/> User Profile</DropdownItem>
+                <DropdownItem eventkey='2'><FontAwesomeIcon style={{color:'#60be86'}} icon={faCog} size='sm'/> Settings</DropdownItem>
                 <DropdownItem divider />
-                <DropdownItem eventKey='3'><FontAwesomeIcon style={{color:'#60be86'}} icon={faSignInAlt} size='sm'/> Logout</DropdownItem>
+                <DropdownItem eventkey='3'><FontAwesomeIcon style={{color:'#60be86'}} icon={faSignInAlt} size='sm'/> Logout</DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
           </Nav>

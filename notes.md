@@ -36,3 +36,4 @@ This will connect to mongo.
 * [Module Exports](http://www.tutorialsteacher.com/nodejs/nodejs-module-exports)
 * [Intro to MongoDB](https://scotch.io/tutorials/an-introduction-to-mongodb)
 * [Install MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)
+* [Setup Postman POST request](https://stackoverflow.com/questions/34888310/express-bodyparser-json-postman-req-body-is-empty)
