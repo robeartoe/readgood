@@ -1,16 +1,53 @@
 // This Routes file will be for node and express.
+var dotenv = require('dotenv');
+// There's no need to check if .env exists, dotenv will check this // for you. It will show a small warning which can be disabled when // using this in production.
+dotenv.load();
+
 var express = require('express');
 // var app = express(); //Perhaps I don't need this?
 var router = express.Router();
-
+var passport = require('passport');
+var settings = process.env.secret; // get secret var.
+require('../utils/passport')(passport);
 var User = require('../models/user');
 var Bcrypt = require('bcrypt');
 var moment = require('moment');
-var jwt = require('jwt-simple');
+var jwt = require('jsonwebtoken');
 
-router.route('/').get(function(req,res){
-  res.json({test:"HI I see you're trying to get into the API. Can I help you? Email: robert@robertjruiz.com"})
+router.get('/', passport.authenticate('jwt', { session: false}), function(req, res) {
+  getToken(req.headers,function(user){
+    if(!user){
+      return res.status(403).send({success: false, msg: 'Unauthorized.'});
+    }
+    else {
+      // console.log(user);
+      return res.json(user);
+    }
+  });
 });
+
+function getToken (headers,cb) {
+  if (headers && headers.authorization) {
+    var authorization = headers.authorization.split(' '), decoded;
+    // console.log(authorization)
+    if(authorization.length === 2){
+        decoded = jwt.verify(authorization[1], settings);
+        // console.log(decoded);
+        var userId = decoded._id;
+        // console.log(userId);
+        // Fetch the user by id
+        User.findOne({_id: userId})
+        .catch(function(error){
+          return cb(null);
+        })
+        .then(function(user){
+            // Do something with the user
+            // console.log(user);
+            cb(user);
+        })
+    }
+  }
+};
 
 // Will be called upon SignUp.
 router.route('/register').post(function(req,res){
@@ -38,26 +75,15 @@ router.route('/login').post(function(req,res){
     if (!User) { return res.status(401).send("No User Found.")}
     // console.log(req.body.password);
     // console.log(User.password);
-    Bcrypt.compare(req.body.password,User.password,function(err,valid){
+    User.comparePassword(req.body.password,function(err,valid){
       if(err){return console.log(err)}
       // console.log(valid)
       if(!valid){return res.status(401).send("Password is Incorrect.")}
       else {
-        // TODO: Implement JWT Here:
-        // TODO: Change "TestSecretKEY"
-        var expires = moment().add(7,'hours').valueOf();
-        var token = jwt.encode({
-          iss: User.email,
-          exp: expires
-        },"TestSecretKEY")
-
-        // res.json({ //Do I need this?
-        //   token:token,
-        //   expires:expires,
-        //   user: user.toJSON() //Do I need this?
-        // });
-        res.status(200).json(token);
-      }
+        var token = jwt.sign(User.toJSON(), settings);
+        // return the information including token as JSON
+        res.json({success: true, token: 'JWT ' + token});
+        }
     });
   });
 });
@@ -138,5 +164,7 @@ router.route('/:email/delete/book').post(function(req,res){
   // TODO: Implement deleting book based on list.
   // userModel.findOneAndRemove({bookList[req.params.bookList][ /*In Here should be the index of the book, that's supposed to get deleted.*/  ]})
 });
+
+
 
 module.exports = router;

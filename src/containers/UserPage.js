@@ -5,6 +5,8 @@ import Layout from './Layout'
 import {Container,Row,Col,TabContent, TabPane, Nav, NavItem, NavLink,} from 'reactstrap';
 import classnames from 'classnames';
 import bookService from '../api/bookService'
+import axios from 'axios';
+
 const UserStats = {}
 const BookStats = {}
 const style={}
@@ -12,12 +14,33 @@ const style={}
 class UserPage extends React.Component{
   constructor(props) {
    super(props);
-
    this.toggle = this.toggle.bind(this);
    this.state = {
-     activeTab: '1'
+     activeTab: '1',
+     user: {}
    };
  }
+
+//TODO: Remove toggle/nav, replace with dynamic table.
+      //
+
+ componentDidMount(){
+   // console.log(localStorage.getItem('jwtToken'));
+    axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
+    var self = this;
+    axios.get('http://localhost:4200/api/') //This will get the user, their books, everything.
+      .then((results)=>{
+        console.log(results)
+        self.setState({user:results.data});
+      })
+      .catch((error) => {
+        console.log(error);
+        console.log(error.response)
+        if(error.response.status === 401) {
+              self.props.history.push("/login");
+        }
+      });
+}
 
  toggle(tab) {
    if (this.state.activeTab !== tab) {

@@ -37,7 +37,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 // Set JWT TOKEN SECRET:
-app.set('jwtTokenSecret',process.env.jwtTokenSecret); //TODO: Figure out why this isn't working.
+app.set('jwtTokenSecret',process.env.jwtTokenSecret);
 
 app.use('/api',routes);
 

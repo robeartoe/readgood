@@ -37,3 +37,4 @@ This will connect to mongo.
 * [Intro to MongoDB](https://scotch.io/tutorials/an-introduction-to-mongodb)
 * [Install MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)
 * [Setup Postman POST request](https://stackoverflow.com/questions/34888310/express-bodyparser-json-postman-req-body-is-empty)
+* [Brew Install Problem](https://www.reddit.com/r/npm/comments/7wcnja/npm_is_not_working_after_installing_yarn/)

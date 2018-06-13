@@ -2,6 +2,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var bookSchema = require('./book')
+var bcrypt = require('bcrypt-nodejs');
 
 // Define Collection and Schema for User:
 var UserSchema = new Schema({
@@ -21,5 +22,14 @@ var UserSchema = new Schema({
     ]
   }
 });
+
+UserSchema.methods.comparePassword = function (passw, cb) {
+    bcrypt.compare(passw, this.password, function (err, isMatch) {
+        if (err) {
+            return cb(err);
+        }
+        cb(null, isMatch);
+    });
+};
 
 module.exports = mongoose.model('user',UserSchema);

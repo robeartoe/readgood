@@ -74,6 +74,7 @@ class SignupForm extends React.Component{
         // console.log(result.data);
         // console.log(result.status);
         self.setState({successState:true});
+        self.props.history.push("/login")
       })
      .catch(function(error){
        // Else: Something went wrong.

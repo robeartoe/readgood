@@ -23,8 +23,6 @@ class LoginForm extends React.Component{
     const target = event.target;
     const value = target.value;
     const name = target.name;
-    console.log(value);
-    console.log(name);
 
     this.setState({[name]: value});
   }
@@ -56,7 +54,10 @@ class LoginForm extends React.Component{
       axios.post('http://localhost:4200/api/login',data)
       .then(function(result){
         // If API code is 200: Good, it worked.
+        // console.log(result);
+        localStorage.setItem('jwtToken', result.data.token);
         self.setState({successState:true});
+        self.props.history.push('/');
       })
      .catch(function(error){
        // Else: Something went wrong.
@@ -74,7 +75,6 @@ class LoginForm extends React.Component{
          self.setState({errors:errorList});
        }
      });
-
     }
     else{
       this.setState({errorState:true});

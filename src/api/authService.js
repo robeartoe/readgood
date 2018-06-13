@@ -10,5 +10,6 @@ class authService{
   })
   }
 }
-
 export default authService;
+
+//NOTE: Determine if I need this class or not.
