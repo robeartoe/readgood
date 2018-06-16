@@ -8,7 +8,14 @@ import BookListing from './BookListing';
 const style = {};
 
 class BookList extends React.Component{
+  constructor(props) {
+       super(props);
+   }
   render(){
+    // console.log(this.props);
+    const listItems = this.props.books.map((item,index) =>
+    <BookListing book={item} numIndex={index}/>
+    );
     return(
       <div>
         <Table bordered>
@@ -19,12 +26,11 @@ class BookList extends React.Component{
               <th>Author:</th>
               <th>Pages Read:</th>
               <th>Pages Total:</th>
+              <th>Edit: </th>
             </tr>
           </thead>
           <tbody>
-            // TODO: Create for-loop for book(s).
-
-            <BookListing/>
+            {listItems}
           </tbody>
         </Table>
       </div>

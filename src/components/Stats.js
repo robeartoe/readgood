@@ -9,35 +9,42 @@ const style={}
 
 
 class Stats extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {booksTotal:0,booksRead:0,booksToRead:0,booksRead:0,pagesRead:0,pagesTotal:0};
+  }
+
+  componentDidMount(){
+
+  }
+
+  determineStats(){
+  }
+
   render(){
+    console.log(this.props)
     return(
       <div>
-        <h1 style={{textAlign:'center'}}>
-          Robert Ruiz
-        </h1>
-        <Link to="/Addbook"><Button color="secondary" size="lg" style={{backgroundColor:"#60be86"}} block>Add Book</Button></Link>
-        <hr>
-        </hr>
         <h4 style={{textAlign:'center'}}>
           Stats:
         </h4>
         <h4>
-          Books Total: <span style={BookStats}>34</span>
+          Books Total: <span style={BookStats}> </span>
         </h4>
         <h4>
-          Books Read: <span style={BookStats}>34</span>
+          Books Read: <span style={BookStats}> </span>
         </h4>
         <h4>
-          Books Reading: <span style={BookStats}>34</span>
+          Books Reading: <span style={BookStats}> </span>
         </h4>
         <h4>
-          Books to Read: <span style={BookStats}>34</span>
+          Books to Read: <span style={BookStats}> </span>
         </h4>
         <h4>
-          Pages Read: <span style={BookStats}>344</span>
+          Pages Read: <span style={BookStats}> </span>
         </h4>
         <h4>
-          Pages Total: <span style={BookStats}>125604</span>
+          Pages Total: <span style={BookStats}> </span>
         </h4>
       </div>
     )

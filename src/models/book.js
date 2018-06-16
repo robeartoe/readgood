@@ -9,7 +9,9 @@ var bookSchema = new Schema({
   pagesRead: Number,
   pagesTotal: Number,
   created: Date,
-  currentList: String
+  updated: Date,
+  currentList: String,
+  userID: { type: Schema.Types.ObjectId, ref: 'UserSchema' }
 });
 
-module.exports = mongoose.model('book',bookSchema);
+var Book = module.exports = mongoose.model('book',bookSchema);

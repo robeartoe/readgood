@@ -12,13 +12,13 @@ var UserSchema = new Schema({
   password: String,
   bookList:{
     toRead:[
-      { type: Schema.Types.ObjectId, ref: 'bookSchema' }
+      { type: Schema.Types.ObjectId, ref: 'book' }
     ],
     reading:[
-      { type: Schema.Types.ObjectId, ref: 'bookSchema' }
+      { type: Schema.Types.ObjectId, ref: 'book' }
     ],
     haveRead:[
-      { type: Schema.Types.ObjectId, ref: 'bookSchema' }
+      { type: Schema.Types.ObjectId, ref: 'book' }
     ]
   }
 });
@@ -32,4 +32,4 @@ UserSchema.methods.comparePassword = function (passw, cb) {
     });
 };
 
-module.exports = mongoose.model('user',UserSchema);
+var User = module.exports = mongoose.model('user',UserSchema);

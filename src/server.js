@@ -11,6 +11,7 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 var jwt = require('jwt-simple');
+
 //and create our instances
 var app = express();
 var router = express.Router();
@@ -30,6 +31,7 @@ mongoose.connect('mongodb://localhost/user')
     console.log("App Starting Error: " + err.stack);
     process.exit(1)}
   )
+
 
 // Use middlewares to set view engine and post json data to the server
 app.use(cors());

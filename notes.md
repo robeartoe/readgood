@@ -38,3 +38,6 @@ This will connect to mongo.
 * [Install MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)
 * [Setup Postman POST request](https://stackoverflow.com/questions/34888310/express-bodyparser-json-postman-req-body-is-empty)
 * [Brew Install Problem](https://www.reddit.com/r/npm/comments/7wcnja/npm_is_not_working_after_installing_yarn/)
+* [Securing MERN Stack Web App](https://www.djamware.com/post/5a90c37980aca7059c14297a/securing-mern-stack-web-application-using-passport)
+* [Understanding callback](https://stackoverflow.com/questions/5010288/how-to-make-a-function-wait-until-a-callback-has-been-called-using-node-js?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa)
+* [Article about understanding callback](http://recurial.com/programming/understanding-callback-functions-in-javascript/)
