@@ -10,7 +10,7 @@ import axios from 'axios';
 
 const UserStats = {}
 const BookStats = {}
-const style={
+const style = {
   cursor:"pointer"
 }
 
@@ -38,7 +38,7 @@ class UserPage extends React.Component{
         console.log(error);
         console.log(error.response)
         if(error.response.status === 401) {
-              self.props.history.push("/login");
+            self.props.history.push("/login");
         }
       });
 }
@@ -56,14 +56,14 @@ class UserPage extends React.Component{
     let readingComp,toReadComp,haveReadComp;
     let booklist = this.state.user.bookList;
 
-    if(booklist !== undefined && booklist.reading !== undefined && booklist.reading.length !== 0){readingComp = <BookList books={booklist.reading} /> }
+    if(booklist !== undefined && booklist.reading !== undefined && booklist.reading.length !== 0){readingComp = <BookList books={booklist.reading} />}
     else{readingComp = null}
 
     if(booklist !== undefined && booklist.toRead !== undefined && booklist.toRead.length !== 0){toReadComp = <BookList books={booklist.toRead} />}
-    else{readingComp = null}
+    else{toReadComp = null}
 
     if(booklist !== undefined && booklist.haveRead !== undefined && booklist.haveRead.length !== 0){haveReadComp = <BookList books={booklist.haveRead} />}
-    else{readingComp = null}
+    else{haveReadComp = null}
 
 
     return(
@@ -102,26 +102,26 @@ class UserPage extends React.Component{
                 </Nav>
                 <TabContent activeTab={this.state.activeTab}>
                   <TabPane tabId="1">
+                    <Row>
+                      <Col sm="12">
+                        {readingComp}
+                      </Col>
+                    </Row>
+                  </TabPane>
+                  <TabPane tabId="2">
+                    <Row>
+                      <Col sm="12">
+                        {toReadComp}
+                      </Col>
+                    </Row>
+                    </TabPane>
+                    <TabPane tabId="3">
                       <Row>
                         <Col sm="12">
-                          {readingComp}
+                          {haveReadComp}
                         </Col>
                       </Row>
                     </TabPane>
-                    <TabPane tabId="2">
-                        <Row>
-                          <Col sm="12">
-                            {toReadComp}
-                          </Col>
-                        </Row>
-                      </TabPane>
-                      <TabPane tabId="3">
-                          <Row>
-                            <Col sm="12">
-                              {haveReadComp}
-                            </Col>
-                          </Row>
-                        </TabPane>
                 </TabContent>
               </Col>
             </Row>

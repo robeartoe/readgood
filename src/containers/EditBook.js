@@ -1,4 +1,4 @@
-//This Container allows the user to add a book to any of their list.
+//This Container allows the user to Edit, Move and Delete a book.
 import React from 'react';
 import Layout from './Layout'
 import {Link} from 'react-router-dom';
@@ -11,13 +11,26 @@ const style={
   paddingBottom:"50px",
 }
 
-class AddBook extends React.Component{
+class EditBook extends React.Component{
   constructor(props){
     super(props);
-    this.state = {title:'',author:'',pagesRead:0,pagesTotal:0,list:'reading',errorState:false,errorMsg:''};
+    this.state = {
+      book:{
+        title:'',author:'',
+        pagesRead:0,pagesTotal:0,
+        currentList:'reading'
+      },
+      errorState:false,
+      errorMsg:''
+    };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.changeValue = this.changeValue.bind(this);
+    this.onDelete = this.onDelete.bind(this);
+  }
+
+  componentDidMount(){
+    this.setState({book:this.props.location.state.book})
   }
 
   handleChange(event){
@@ -25,55 +38,82 @@ class AddBook extends React.Component{
     const value = target.value;
     const name = target.name;
 
-    this.setState({[name]: value});
+    let book = Object.assign({}, this.state.book);
+    book[name] = value;
+
+    this.setState({book});
+  }
+
+  changeValue(e) {
+    // Will change ToRead, reading and haveRead:
+    let book = Object.assign({}, this.state.book);
+    const name = e.target.name;
+    book[name] = e.target.value;
+    // console.log(name, book[name])
+    this.setState({book});
+  }
+
+  onDelete(){
+    var self = this;
+    axios.post('http://localhost:4200/api/delete',this.state.book)
+    .then(function(result){
+      // If API code is 200: Good, it worked.
+      // console.log(result);
+      // self.setState({successState:true});
+      self.props.history.push('/');
+    })
+   .catch(function(error){
+     // Else: Something went wrong.
+     console.log(error)
+     if (error.response) {
+       console.log(error.response)
+       // var errorList = [error.response.data];
+       self.setState({errorState:true});
+       self.setState({errorMsg:error.response.data});
+     }
+     else if (error.request) {
+       console.log(error.request)
+       // var errorList = [error.request.data];
+       self.setState({errorState:true});
+       self.setState({errorMsg:error.request.data});
+     }
+   });
   }
 
   handleFormValidation(){
     var state = true;
-    if (this.state.title == '') {
+    if (this.state.book.title == '') {
       this.setState({errorMsg:"Can't have an empty book name!"})
       return state = false;
     }
     return state;
   }
 
-  changeValue(e) {
-    // console.log(e.target.value)
-    this.setState({list: e.target.value})
-  }
+
 
   handleSubmit(event){
     event.preventDefault();
-    var data = {
-      title:this.state.title,
-      author:this.state.author,
-      pagesRead:this.state.pagesRead,
-      pagesTotal:this.state.pagesTotal,
-      currentList:this.state.list,
-      service:"add"
-    }
     // console.log(this.state)
     if (this.handleFormValidation()) {
       var self = this;
       self.setState({errorState:false});
-      axios.post('http://localhost:4200/api/add',data)
+      axios.post('http://localhost:4200/api/update',this.state.book)
       .then(function(result){
         // If API code is 200: Good, it worked.
         console.log(result);
-        // self.setState({successState:true});
         self.props.history.push('/');
       })
      .catch(function(error){
        // Else: Something went wrong.
-       console.log(error)
+       // console.log(error)
        if (error.response) {
-         console.log(error.response)
+         // console.log(error.response)
          // var errorList = [error.response.data];
          self.setState({errorState:true});
          self.setState({errorMsg:error.response.data});
        }
        else if (error.request) {
-         console.log(error.request)
+         // console.log(error.request)
          // var errorList = [error.request.data];
          self.setState({errorState:true});
          self.setState({errorMsg:error.request.data});
@@ -86,12 +126,14 @@ class AddBook extends React.Component{
   }
 
   render(){
+    // console.log(this.props);
+    // console.log(this.state);
     return(
       <Layout>
         <Container style={style}>
           <Row>
             <Col sm={{size:3,offset:1}}>
-              <h1 class="display-4">Add Book:</h1>
+              <h1 class="display-4">Edit Book:</h1>
             </Col>
           </Row>
           <Row>
@@ -111,30 +153,31 @@ class AddBook extends React.Component{
               <Form onSubmit={this.handleSubmit}>
                 <FormGroup>
                   <Label for="bookTitle">Title</Label>
-                  <Input name="title" id="bookTitle" onChange={this.handleChange} value={this.state.title} placeholder="Invisible Man"/>
+                  <Input name="title" id="bookTitle" onChange={this.handleChange} value={this.state.book.title} placeholder="Invisible Man"/>
                 </FormGroup>
                 <FormGroup>
                   <Label for="bookAuthor">Author</Label>
-                  <Input name="author" id="bookAuthor" onChange={this.handleChange} value={this.state.author} placeholder="Ralph Ellison"/>
+                  <Input name="author" id="bookAuthor" onChange={this.handleChange} value={this.state.book.author} placeholder="Ralph Ellison"/>
                 </FormGroup>
                 <FormGroup>
                   <Label for="pagesRead">Pages Read</Label>
-                  <Input name="pagesRead" id="pagesRead" onChange={this.handleChange} value={this.state.pagesRead} placeholder="25"/>
+                  <Input name="pagesRead" id="pagesRead" onChange={this.handleChange} value={this.state.book.pagesRead} placeholder="25"/>
                 </FormGroup>
                 <FormGroup>
                   <Label for="pagesTotal">Pages Total</Label>
-                  <Input name="pagesTotal" id="pagesTotal" onChange={this.handleChange} value={this.state.pagesTotal} placeholder="460"/>
+                  <Input name="pagesTotal" id="pagesTotal" onChange={this.handleChange} value={this.state.book.pagesTotal} placeholder="460"/>
                 </FormGroup>
                 <FormGroup>
                   <Label for="bookList">Book List</Label>
-                  <Input type="select" name="list" id="bookList" value={this.state.list} onChange={this.changeValue}>
+                  <Input type="select" name="currentList" id="currentList" value={this.state.book.currentList} onChange={this.changeValue}>
                     <option value="reading" >Reading</option>
                     <option value="toRead">To Read</option>
                     <option value="haveRead">Have Read</option>
                   </Input>
                 </FormGroup>
-                <Button style={{backgroundColor:"#60be86"}}>Add Book</Button>
+                <Button style={{backgroundColor:"#60be86"}}>Edit Book</Button>
               </Form>
+              <Button onClick={this.onDelete} color="danger">Delete Book</Button>
             </Col>
           </Row>
         </Container>
@@ -144,4 +187,4 @@ class AddBook extends React.Component{
 
 }
 
-export default AddBook;
+export default EditBook;

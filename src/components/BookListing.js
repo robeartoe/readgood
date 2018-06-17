@@ -3,18 +3,20 @@ import React from 'react'
 import {Table} from 'reactstrap';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import {faPencilAlt} from '@fortawesome/fontawesome-free-solid'
+import {Link} from 'react-router-dom';
+
+const style = {
+  cursor:"pointer"
+}
 
 class BookListing extends React.Component{
   constructor(props) {
-       super(props);
-   }
-
-   // componentDidMount(){
-   //   console.log(this.state)
-   // }
+    super(props);
+  }
 
   render(){
     // console.log(this.props);
+    // let book = this.props.book
     return(
       <tr>
        <th scope="row">{this.props.numIndex+1}</th>
@@ -22,7 +24,7 @@ class BookListing extends React.Component{
        <td>{this.props.book.author}</td>
        <td>{this.props.book.pagesRead}</td>
        <td>{this.props.book.pagesTotal} </td>
-       <td> <FontAwesomeIcon style={{color:'#60be86'}} icon={faPencilAlt}  size='lg'/> </td>
+       <td><Link to={{ pathname: "/EditBook", state: {book: this.props.book} }} style={style} ><FontAwesomeIcon style={{color:'#60be86'}} icon={faPencilAlt}  size='lg'/></Link></td>
       </tr>
     )
   }

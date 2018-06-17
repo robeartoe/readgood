@@ -29,7 +29,7 @@ router.get('/', passport.authenticate('jwt', { session: false}), function(req, r
   });
 });
 
-router.post('/addbook', passport.authenticate('jwt', { session: false}), function(req, res) {
+router.post('/add', passport.authenticate('jwt', { session: false}), function(req, res) {
   getToken(req.headers,function(user){
     // console.log(user)
     if(!user){
@@ -94,30 +94,47 @@ router.post('/addbook', passport.authenticate('jwt', { session: false}), functio
   });
 });
 
-// router.post('/update', passport.authenticate('jwt', { session: false}), function(req, res) {
-//   getToken(req.headers,function(user){
-//     if(!user){
-//       return res.status(403).send({success: false, msg: 'Unauthorized.'});
-//     }
-//     else {
-//       // console.log(user);
-          // var new
-//       return res.status(200).send(success:true);
-//     }
-//   });
-// });
+router.post('/update', passport.authenticate('jwt', { session: false}), function(req, res) {
+  getToken(req.headers,function(user){
+    if(!user){
+      return res.status(403).send({success: false, msg: 'Unauthorized.'});
+    }
+    else {
+      // console.log(req.body);
+      var query = {_id: req.body._id};
+      var updateObj = {
+        title: req.body.title,
+        author:req.body.author,
+        pagesRead:req.body.pagesRead,
+        pagesTotal:req.body.pagesTotal,
+        currentList:req.body.currentList,
+        updated: new Date()
+      }
+      Book.findByIdAndUpdate(query,updateObj,function(err,model){
+        if(err){return res.status(500).send({success:false})}
+        console.log(model)
+      });
+      return res.status(200).send({success:true});
+    }
+  });
+});
 
-// router.post('/delete', passport.authenticate('jwt', { session: false}), function(req, res) {
-//   getToken(req.headers,function(user){
-//     if(!user){
-//       return res.status(403).send({success: false, msg: 'Unauthorized.'});
-//     }
-//     else {
-//       // console.log(user);
-//       return res.json(user);
-//     }
-//   });
-// });
+router.post('/delete', passport.authenticate('jwt', { session: false}), function(req, res) {
+  getToken(req.headers,function(user){
+    if(!user){
+      return res.status(403).send({success: false, msg: 'Unauthorized.'});
+    }
+    else {
+      var query = {_id: req.body._id};
+      Book.findByIdAndRemove(query,function(err,model){
+        if(err){return res.status(500).send({success:false})}
+        return res.status(200).send({success:true});
+      });
+      // console.log(user);
+      // return res.json(user);
+    }
+  });
+});
 
 function getToken (headers,cb) {
   if (headers && headers.authorization) {

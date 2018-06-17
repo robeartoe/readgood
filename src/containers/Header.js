@@ -1,6 +1,7 @@
 // TODO: Set the right part of the header(Gear) to be visible if user is logged in, and not visible is user is logged out.
 
-import React from 'react'
+import React,{PropTypes} from 'react'
+import { withRouter } from 'react-router-dom'
 
 import {
   Collapse,
@@ -41,6 +42,9 @@ class Header extends React.Component{
       isHover: false
     };
   }
+  // static contextTypes = {
+  //   router: PropTypes.object
+  // }
   toggle() {
     this.setState({
       isOpen: !this.state.isOpen
@@ -59,6 +63,7 @@ class Header extends React.Component{
 
   LogOut(){
     localStorage.removeItem('jwtToken');
+    this.props.history.push('/');
     window.location.reload();
   }
 
@@ -88,4 +93,4 @@ class Header extends React.Component{
   }
 }
 
-export default Header;
+export default withRouter(Header);

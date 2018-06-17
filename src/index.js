@@ -7,6 +7,7 @@ import LoginForm from './containers/LoginForm';
 import SignupForm from './containers/SignupForm';
 import UserPage from './containers/UserPage';
 import AddBook from './containers/AddBook';
+import EditBook from './containers/EditBook';
 import Settings from './containers/Settings'
 
 import registerServiceWorker from './registerServiceWorker';
@@ -25,6 +26,7 @@ ReactDOM.render(
         <Route path='/Login' component={LoginForm} />
         <Route path='/Signup' component={SignupForm} />
         <Route path='/AddBook' component={AddBook} />
+        <Route path='/EditBook' component={EditBook} />
         <Route path='/Settings' component={Settings} />
       </div>
 </Router>
