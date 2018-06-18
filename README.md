@@ -1,4 +1,4 @@
-# CS362-CryptoCurrencyViewer
+# ReadGood
 A MERN stack Web Application, that allows users to keep track of their books. And help them read good.
 
 ---
