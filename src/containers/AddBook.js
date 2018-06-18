@@ -38,7 +38,6 @@ class AddBook extends React.Component{
   }
 
   changeValue(e) {
-    // console.log(e.target.value)
     this.setState({list: e.target.value})
   }
 
@@ -52,28 +51,23 @@ class AddBook extends React.Component{
       currentList:this.state.list,
       service:"add"
     }
-    // console.log(this.state)
     if (this.handleFormValidation()) {
       var self = this;
       self.setState({errorState:false});
       axios.post('http://localhost:4200/api/add',data)
       .then(function(result){
         // If API code is 200: Good, it worked.
-        console.log(result);
         // self.setState({successState:true});
         self.props.history.push('/');
       })
      .catch(function(error){
        // Else: Something went wrong.
-       console.log(error)
        if (error.response) {
-         console.log(error.response)
          // var errorList = [error.response.data];
          self.setState({errorState:true});
          self.setState({errorMsg:error.response.data});
        }
        else if (error.request) {
-         console.log(error.request)
          // var errorList = [error.request.data];
          self.setState({errorState:true});
          self.setState({errorMsg:error.request.data});

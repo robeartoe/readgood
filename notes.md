@@ -41,3 +41,4 @@ This will connect to mongo.
 * [Securing MERN Stack Web App](https://www.djamware.com/post/5a90c37980aca7059c14297a/securing-mern-stack-web-application-using-passport)
 * [Understanding callback](https://stackoverflow.com/questions/5010288/how-to-make-a-function-wait-until-a-callback-has-been-called-using-node-js?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa)
 * [Article about understanding callback](http://recurial.com/programming/understanding-callback-functions-in-javascript/)
+* [Template Literals: ](https://stackoverflow.com/questions/30969382/mongodb-object-key-with-es6-template-string)

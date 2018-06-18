@@ -20,7 +20,6 @@ class Stats extends React.Component{
   }
 
   componentDidMount(){
-    // console.log(this.props)
     var data = {
       booksTotal:0,
       booksRead:0,
@@ -37,8 +36,6 @@ class Stats extends React.Component{
         data.pagesRead += this.props.booklist.haveRead[i].pagesRead;
         data.pagesTotal += this.props.booklist.haveRead[i].pagesTotal;
       }
-      // console.log(data.booksTotal);
-      // console.log(this.props.booklist.haveRead.length);
     }
 
     if(this.props.booklist.reading !== undefined){
@@ -48,8 +45,6 @@ class Stats extends React.Component{
         data.pagesRead += this.props.booklist.reading[i].pagesRead;
         data.pagesTotal += this.props.booklist.reading[i].pagesTotal;
       }
-      // console.log(data.booksTotal);
-      // console.log(this.props.booklist.reading.length);
     }
 
     if(this.props.booklist.toRead !== undefined){
@@ -59,16 +54,12 @@ class Stats extends React.Component{
         data.pagesRead += this.props.booklist.toRead[i].pagesRead;
         data.pagesTotal += this.props.booklist.toRead[i].pagesTotal;
       }
-      // console.log(data.booksTotal);
-      // console.log(this.props.booklist.toRead.length);
     }
 
     this.setState({stats:data});
   }
 
   render(){
-    // console.log(this.props)
-    // console.log(this.state);
     return(
       <div>
         <h4 style={{textAlign:'center'}}>

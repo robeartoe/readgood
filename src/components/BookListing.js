@@ -15,8 +15,6 @@ class BookListing extends React.Component{
   }
 
   render(){
-    // console.log(this.props);
-    // let book = this.props.book
     return(
       <tr>
        <th scope="row">{this.props.numIndex+1}</th>

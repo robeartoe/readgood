@@ -37,7 +37,7 @@ class UserPage extends React.Component{
       .catch((error) => {
         console.log(error);
         console.log(error.response)
-        if(error.response.status === 401) {
+        if(error.response.status === 401 || error.response.status === 403) {
             self.props.history.push("/login");
         }
       });

@@ -49,7 +49,6 @@ class EditBook extends React.Component{
     let book = Object.assign({}, this.state.book);
     const name = e.target.name;
     book[name] = e.target.value;
-    // console.log(name, book[name])
     this.setState({book});
   }
 
@@ -58,22 +57,15 @@ class EditBook extends React.Component{
     axios.post('http://localhost:4200/api/delete',this.state.book)
     .then(function(result){
       // If API code is 200: Good, it worked.
-      // console.log(result);
-      // self.setState({successState:true});
       self.props.history.push('/');
     })
    .catch(function(error){
      // Else: Something went wrong.
-     console.log(error)
      if (error.response) {
-       console.log(error.response)
-       // var errorList = [error.response.data];
        self.setState({errorState:true});
        self.setState({errorMsg:error.response.data});
      }
      else if (error.request) {
-       console.log(error.request)
-       // var errorList = [error.request.data];
        self.setState({errorState:true});
        self.setState({errorMsg:error.request.data});
      }
@@ -93,28 +85,21 @@ class EditBook extends React.Component{
 
   handleSubmit(event){
     event.preventDefault();
-    // console.log(this.state)
     if (this.handleFormValidation()) {
       var self = this;
       self.setState({errorState:false});
       axios.post('http://localhost:4200/api/update',this.state.book)
       .then(function(result){
         // If API code is 200: Good, it worked.
-        // console.log(result);
         self.props.history.push('/');
       })
      .catch(function(error){
        // Else: Something went wrong.
-       // console.log(error)
        if (error.response) {
-         // console.log(error.response)
-         // var errorList = [error.response.data];
          self.setState({errorState:true});
          self.setState({errorMsg:error.response.data});
        }
        else if (error.request) {
-         // console.log(error.request)
-         // var errorList = [error.request.data];
          self.setState({errorState:true});
          self.setState({errorMsg:error.request.data});
        }
@@ -126,8 +111,6 @@ class EditBook extends React.Component{
   }
 
   render(){
-    // console.log(this.props);
-    // console.log(this.state);
     return(
       <Layout>
         <Container style={style}>

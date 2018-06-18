@@ -12,7 +12,6 @@ class BookList extends React.Component{
        super(props);
    }
   render(){
-    // console.log(this.props);
     const listItems = this.props.books.map((item,index) =>
     <BookListing book={item} numIndex={index}/>
     );

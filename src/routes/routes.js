@@ -24,7 +24,6 @@ router.get('/', passport.authenticate('jwt', { session: false}), function(req, r
       return res.status(403).send({success: false, msg: 'Unauthorized.'});
     }
     else {
-      // console.log(user);
       return res.json(user);
     }
   });
@@ -32,12 +31,10 @@ router.get('/', passport.authenticate('jwt', { session: false}), function(req, r
 
 router.post('/add', passport.authenticate('jwt', { session: false}), function(req, res) {
   getToken(req.headers,function(user){
-    // console.log(user)
     if(!user){
       return res.status(403).send({success: false, msg: 'You can not be here.'});
     }
     else {
-      // console.log(typeof(user));
       var book = new Book({
         title: req.body.title, author: req.body.author,
         pagesRead: parseInt(req.body.pagesRead,10), pagesTotal: parseInt(req.body.pagesTotal,10),
@@ -45,7 +42,6 @@ router.post('/add', passport.authenticate('jwt', { session: false}), function(re
         currentList: req.body.currentList,
         userID: user._id
       });
-      // console.log(book)
       book.save()
       var currList = `bookList.${req.body.currentList}`;
         User.update(
@@ -58,7 +54,6 @@ router.post('/add', passport.authenticate('jwt', { session: false}), function(re
           function(err, model) {
             if(err){console.log(err)};
         });
-        // User.save()
         return res.status(200).send({success:true});
     }
   });
@@ -70,7 +65,6 @@ router.post('/update', passport.authenticate('jwt', { session: false}), function
       return res.status(403).send({success: false, msg: 'Unauthorized.'});
     }
     else {
-      // console.log(req.body);
       var userQuery = {_id:req.body.userID};
       var query = {_id: req.body._id};
       var updateObj = {
@@ -83,12 +77,9 @@ router.post('/update', passport.authenticate('jwt', { session: false}), function
       }
 
       Book.findByIdAndUpdate(query,updateObj,function(err,result){
-        console.log(result);
         if(err){return res.status(500).send({success:false})}
         var oldList = `bookList.${result.currentList}`;
         var newList = `bookList.${updateObj.currentList}`;
-        console.log(oldList);
-        console.log(newList);
 
         User.update(userQuery,{
           $pull:{ [oldList]: result._id }
@@ -111,8 +102,6 @@ router.post('/delete', passport.authenticate('jwt', { session: false}), function
         if(err){return res.status(500).send({success:false})}
         return res.status(200).send({success:true});
       });
-      // console.log(user);
-      // return res.json(user);
     }
   });
 });
@@ -120,12 +109,9 @@ router.post('/delete', passport.authenticate('jwt', { session: false}), function
 function getToken (headers,cb) {
   if (headers && headers.authorization) {
     var authorization = headers.authorization.split(' '), decoded;
-    // console.log(authorization)
     if(authorization.length === 2){
         decoded = jwt.verify(authorization[1], settings);
-        // console.log(decoded);
         var userId = decoded._id;
-        // console.log(userId);
         // Fetch the user by id
         User.findOne({_id: userId})
         .populate('bookList.toRead')
@@ -133,9 +119,7 @@ function getToken (headers,cb) {
         .populate('bookList.haveRead')
         .exec(function(err,results){
           if(err){
-            console.log(err)
             return cb(null)}
-          // console.log(results)
           cb(results)
         })
     }
@@ -147,7 +131,6 @@ router.route('/register').post(function(req,res){
   var item = new User(req.body);
   Bcrypt.hash(req.body.password,10,function(err,hash){
     item.password = hash;
-    console.log(hash)
     item.save()
     .then(item => {
       return res.send("User Added Sucessfully");
@@ -161,15 +144,11 @@ router.route('/register').post(function(req,res){
 router.route('/login').post(function(req,res){
   User.findOne({email:req.body.email},function (err,User){
     if(err){
-      console.log(err);
       return res.status(500).send("Error on our end. We're sorry!");
     }
     if (!User) { return res.status(401).send("No User Found.")}
-    // console.log(req.body.password);
-    // console.log(User.password);
     User.comparePassword(req.body.password,function(err,valid){
       if(err){return console.log(err)}
-      // console.log(valid)
       if(!valid){return res.status(401).send("Password is Incorrect.")}
       else {
         var token = jwt.sign(User.toJSON(), settings);
@@ -180,16 +159,21 @@ router.route('/login').post(function(req,res){
   });
 });
 
-// router.post('/deleteAccount', passport.authenticate('jwt', { session: false}), function(req, res) {
-//   getToken(req.headers,function(user){
-//     if(!user){
-//       return res.status(403).send({success: false, msg: 'Unauthorized.'});
-//     }
-//     else {
-//       // console.log(user);
-//       return res.json(user);
-//     }
-//   });
-// });
+router.post('/deleteAccount', passport.authenticate('jwt', { session: false}), function(req, res) {
+  getToken(req.headers,function(user){
+    if(!user){
+      return res.status(403).send({success: false, msg: 'Unauthorized.'});
+    }
+    else {
+      // console.log(user);
+      // return res.json(user);
+      query={_id:user._id};
+      User.findByIdAndRemove(query,function(err,success){
+        if(err){return res.status(500).send({success:false});}
+        return res.status(200).send({success:true});
+      });
+    }
+  });
+});
 
 module.exports = router;
