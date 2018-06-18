@@ -4,7 +4,7 @@ import Layout from './Layout'
 import {Link} from 'react-router-dom';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import {faArrowLeft} from '@fortawesome/fontawesome-free-solid'
-import {Container,Row,Col,Button,Form,FormGroup,Label,Input,Alert,UncontrolledAlert} from 'reactstrap'
+import {Container,Row,Col,Button,Form,FormGroup,Label,Input,UncontrolledAlert} from 'reactstrap'
 import axios from 'axios';
 
 const style={
@@ -74,7 +74,7 @@ class EditBook extends React.Component{
 
   handleFormValidation(){
     var state = true;
-    if (this.state.book.title == '') {
+    if (this.state.book.title === '') {
       this.setState({errorMsg:"Can't have an empty book name!"})
       return state = false;
     }

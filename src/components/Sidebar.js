@@ -1,10 +1,6 @@
 import React from 'react'
-import {Row,Col,Container,Button} from 'reactstrap'
+import {Button} from 'reactstrap'
 import {Link} from 'react-router-dom';
-
-const UserStats = {}
-const BookStats = {textAlign:'right',float:'right'}
-const style={}
 
 class SideBar extends React.Component{
   render(){

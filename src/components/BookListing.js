@@ -1,6 +1,5 @@
 // This component will return a specific row located in BookListing.
 import React from 'react'
-import {Table} from 'reactstrap';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import {faPencilAlt} from '@fortawesome/fontawesome-free-solid'
 import {Link} from 'react-router-dom';
@@ -10,10 +9,6 @@ const style = {
 }
 
 class BookListing extends React.Component{
-  constructor(props) {
-    super(props);
-  }
-
   render(){
     return(
       <tr>

@@ -5,12 +5,8 @@ import React from 'react';
 import {Table} from 'reactstrap';
 import BookListing from './BookListing';
 
-const style = {};
 
 class BookList extends React.Component{
-  constructor(props) {
-       super(props);
-   }
   render(){
     const listItems = this.props.books.map((item,index) =>
     <BookListing book={item} numIndex={index}/>

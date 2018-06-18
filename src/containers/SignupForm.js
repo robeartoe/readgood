@@ -1,6 +1,5 @@
 import React from 'react'
-import { Container ,Col, Form, FormGroup, Label, Input, FormText,Card,
-  CardImg, CardText, CardBody,CardTitle, CardSubtitle, Button,Alert } from 'reactstrap';
+import { Container ,Col, Form, FormGroup, Label, Input,Button,Alert } from 'reactstrap';
 import MainMenu from './MainMenu';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
@@ -22,10 +21,6 @@ class SignupForm extends React.Component{
     const target = event.target;
     const value = target.value;
     const name = target.name;
-    // console.log(target);
-    // console.log(value);
-    // console.log(name);
-    // console.log(this.state);
     this.setState({[name]: value});
    }
 
@@ -34,23 +29,23 @@ class SignupForm extends React.Component{
      // console.log(this.state);
      var errorList = [];
 
-     if(this.state.password != this.state.confirmPassword){
+     if(this.state.password !== this.state.confirmPassword){
        errorList.push("Passwords do not match!");
        state = false;
      }
-     if (this.state.password.length == 0) {
+     if (this.state.password.length === 0) {
        errorList.push("No password!")
        state = false;
      }
-     if (this.state.firstName == '') {
+     if (this.state.firstName === '') {
        errorList.push("No First Name!")
        state = false;
      }
-     if (this.state.lastName == '') {
+     if (this.state.lastName === '') {
        errorList.push("No Last Name!");
        state = false;
      }
-     if (this.state.email == '') {
+     if (this.state.email === '') {
        errorList.push("No Email!");
        state = false;
      }
@@ -149,9 +144,8 @@ class SignupForm extends React.Component{
             </Col>
           </FormGroup>
         </Form>
-
       </Container>
-      <div style={{textAlign:'center',padding:'15px',backgroundColor:'#60be86'}}>
+      <div style={{textAlign:'center',display:"grid",backgroundColor:'#60be86'}}>
         <p>Have an account?</p>
         <Link to="/Login"><Button style={{backgroundColor:"whitesmoke",color:'#60be86'}}>Log In</Button></Link>
       </div>

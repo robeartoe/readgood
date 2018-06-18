@@ -1,9 +1,7 @@
 import React from 'react';
 import Layout from './Layout'
-import LoginForm from './LoginForm'
-import SignupForm from './SignupForm'
 
-import {Jumbotron,Container,Button} from 'reactstrap';
+import {Jumbotron,Container} from 'reactstrap';
 
 const style={
   backgroundColor:'whitesmoke',

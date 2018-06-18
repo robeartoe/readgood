@@ -1,25 +1,19 @@
 // TODO: Set the right part of the header(Gear) to be visible if user is logged in, and not visible is user is logged out.
 
-import React,{PropTypes} from 'react'
+import React from 'react'
 import { withRouter } from 'react-router-dom'
 
 import {
-  Collapse,
   Navbar,
-  NavbarToggler,
   NavbarBrand,
-  NavDropdown,
   Nav,
-  NavItem,
-  NavLink,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem,
-  DropdownButton} from 'reactstrap';
+  DropdownItem} from 'reactstrap';
 
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
-import {faBars,faCog,faUser,faSignInAlt} from '@fortawesome/fontawesome-free-solid'
+import {faCog,faUser,faSignInAlt} from '@fortawesome/fontawesome-free-solid'
 
 const divStyle = {
   backgroundColor:"#60be86",

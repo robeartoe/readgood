@@ -3,9 +3,8 @@ import Stats from '../components/Stats';
 import BookList from '../components/BookList';
 import SideBar from '../components/Sidebar';
 import Layout from './Layout'
-import {Container,Row,Col,TabContent, TabPane, Nav, NavItem, NavLink,Table} from 'reactstrap';
+import {Container,Row,Col,TabContent, TabPane, Nav, NavItem, NavLink} from 'reactstrap';
 import classnames from 'classnames';
-import bookService from '../api/bookService'
 import axios from 'axios';
 
 const UserStats = {}

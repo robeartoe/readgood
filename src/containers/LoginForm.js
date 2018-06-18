@@ -1,9 +1,7 @@
 import React from 'react'
-import { Container ,Col, Form, FormGroup, Label, Input, FormText,Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Button,Alert } from 'reactstrap';
+import { Container ,Col, Form, FormGroup, Label, Input, Button,Alert } from 'reactstrap';
 import {Link} from 'react-router-dom';
 import MainMenu from './MainMenu';
-import loginService from '../api/loginService'
 import axios from 'axios';
 
 const style={
@@ -30,11 +28,11 @@ class LoginForm extends React.Component{
   handleFormValidation(){
     var errorList = [];
     var state = true;
-    if (this.state.password == '') {
+    if (this.state.password === '') {
       errorList.push("Empty password!");
       state = false;
     }
-    if (this.state.email == '') {
+    if (this.state.email === '') {
       errorList.push("Empty Email!")
       state = false;
     }
