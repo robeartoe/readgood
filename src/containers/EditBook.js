@@ -100,7 +100,7 @@ class EditBook extends React.Component{
       axios.post('http://localhost:4200/api/update',this.state.book)
       .then(function(result){
         // If API code is 200: Good, it worked.
-        console.log(result);
+        // console.log(result);
         self.props.history.push('/');
       })
      .catch(function(error){

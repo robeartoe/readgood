@@ -11,6 +11,7 @@ var settings = process.env.secret; // get secret var.
 require('../utils/passport')(passport);
 var User = require('../models/user');
 var Book = require('../models/book');
+var ObjectId = require('mongoose').Types.ObjectId;
 
 var Bcrypt = require('bcrypt');
 var moment = require('moment');
@@ -46,13 +47,11 @@ router.post('/add', passport.authenticate('jwt', { session: false}), function(re
       });
       // console.log(book)
       book.save()
-
-      if(req.body.currentList === 'toRead'){
-        // console.log("In toREAD")
+      var currList = `bookList.${req.body.currentList}`;
         User.update(
           {_id: user._id},
           {$push : {
-            "bookList.toRead" : book
+            [currList] : book
             }
           },
           {safe: true, upsert: true, new : true},
@@ -61,35 +60,6 @@ router.post('/add', passport.authenticate('jwt', { session: false}), function(re
         });
         // User.save()
         return res.status(200).send({success:true});
-      }
-      if(req.body.currentList === 'reading'){
-        User.update(
-          {_id: user._id},
-          {$push : {
-            "bookList.reading" : book
-            }
-          },
-          {safe: true, upsert: true, new : true},
-          function(err, model) {
-            if(err){console.log(err)};
-        });
-        // User.save()
-        return res.status(200).send({success:true});
-      }
-      if(req.body.currentList === 'haveRead'){
-        User.update(
-          {_id: user._id},
-          {$push : {
-            "bookList.haveRead" : book
-            }
-          },
-          {safe: true, upsert: true, new : true},
-          function(err, model) {
-            if(err){console.log(err)};
-        });
-        // User.save()
-        return res.status(200).send({success:true});
-      }
     }
   });
 });
@@ -101,6 +71,7 @@ router.post('/update', passport.authenticate('jwt', { session: false}), function
     }
     else {
       // console.log(req.body);
+      var userQuery = {_id:req.body.userID};
       var query = {_id: req.body._id};
       var updateObj = {
         title: req.body.title,
@@ -110,9 +81,19 @@ router.post('/update', passport.authenticate('jwt', { session: false}), function
         currentList:req.body.currentList,
         updated: new Date()
       }
-      Book.findByIdAndUpdate(query,updateObj,function(err,model){
+
+      Book.findByIdAndUpdate(query,updateObj,function(err,result){
+        console.log(result);
         if(err){return res.status(500).send({success:false})}
-        console.log(model)
+        var oldList = `bookList.${result.currentList}`;
+        var newList = `bookList.${updateObj.currentList}`;
+        console.log(oldList);
+        console.log(newList);
+
+        User.update(userQuery,{
+          $pull:{ [oldList]: result._id }
+          ,$push:{ [newList]: result }
+        },{safe: true, new : true},function(err,result){});
       });
       return res.status(200).send({success:true});
     }
